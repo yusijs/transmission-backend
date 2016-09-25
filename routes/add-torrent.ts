@@ -1,6 +1,8 @@
 import express = require("express");
-import { transmission } from '../config'
+import multer = require("multer");
+import { transmission } from '../config';
 
+const upload = multer({ dest: 'torrents/' })
 export const router = express.Router({})
 
 router.post("/url", (req, res) => {
@@ -13,5 +15,19 @@ router.post("/url", (req, res) => {
       res.status(500).send(err);
     else
       res.status(200).send({ status: "success", message: `${result.name} added` });
+  })
+})
+
+router.post("/", upload.single('torrent'), (req, res) => {
+  console.log(req.file)
+  transmission.addFile(`torrents/${req.file.filename}`, (err, result) => {
+    if (err)
+      res.status(500).send(err);
+    else {
+      res.status(200).send({
+        status: "success",
+        message: `${result.name} added`
+      })
+    }
   })
 })
