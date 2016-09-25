@@ -1,4 +1,6 @@
 import express = require("express");
+import Transmission = require("transmission")
+
 import { transmission } from '../config'
 import { router as ADD_TORRENT } from './add-torrent'
 
@@ -25,6 +27,101 @@ router.get("/", (req, res) => {
   }
 })
 
+router.put("/", (req, res) => {
+  if (!req.body.ids) {
+    res.status(500).send({ status: "failed", message: "No ids specified" })
+  }
+  else {
+    let {ids} = req.body
+    let options: Transmission.setTorrentOptions = req.body.options;
+    // Needs to be a number, so parse the id(s) just to be safe.
+    if (typeof ids == 'object')
+      ids = ids.map(item => parseInt(item))
+    else
+      ids = parseInt(ids);
+    transmission.set(ids, options, (err, results) => {
+      res.json(results.torrents);
+    })
+  }
+})
+
+router.put("/reannounce", (req, res) => {
+  if (!req.body.ids) {
+    res.status(500).send({ status: "failed", message: "No ids specified" })
+  }
+  else {
+    let {ids} = req.body
+    // Needs to be a number, so parse the id(s) just to be safe.
+    if (typeof ids == 'object')
+      ids = ids.map(item => parseInt(item))
+    else
+      ids = parseInt(ids);
+    transmission.reannounce(ids, (err, results) => {
+      res.json(results.torrents);
+    })
+  }
+})
+
+router.put("/start", (req, res) => {
+  if (!req.body.ids) {
+    res.status(500).send({ status: "failed", message: "No ids specified" })
+  }
+  else {
+    let {ids} = req.body
+    // Needs to be a number, so parse the id(s) just to be safe.
+    if (typeof ids == 'object')
+      ids = ids.map(item => parseInt(item))
+    else
+      ids = parseInt(ids);
+    transmission.start(ids, (err, results) => {
+      res.json(results.torrents);
+    })
+  }
+})
+
+router.put("/startnow", (req, res) => {
+  if (!req.body.ids) {
+    res.status(500).send({ status: "failed", message: "No ids specified" })
+  }
+  else {
+    let {ids} = req.body
+    // Needs to be a number, so parse the id(s) just to be safe.
+    if (typeof ids == 'object')
+      ids = ids.map(item => parseInt(item))
+    else
+      ids = parseInt(ids);
+    transmission.startNow(ids, (err, results) => {
+      res.json(results.torrents);
+    })
+  }
+})
+
+router.put("/stop", (req, res) => {
+  if (!req.body.ids) {
+    res.status(500).send({ status: "failed", message: "No ids specified" })
+  }
+  else {
+    let {ids} = req.body
+    // Needs to be a number, so parse the id(s) just to be safe.
+    if (typeof ids == 'object')
+      ids = ids.map(item => parseInt(item))
+    else
+      ids = parseInt(ids);
+    transmission.stop(ids, (err, results) => {
+      res.json(results.torrents);
+    })
+  }
+})
+
+router.get("/active", (req, res) => {
+  transmission.active((err, result) => {
+    if (err) res.status(500).send(err);
+    else {
+      res.status(200).send(result.torrents);
+    }
+  })
+})
+
 router.delete("/", (req, res) => {
   if (!req.body.ids) {
     res.status(500).send({ status: "error", message: "No ids supplied." })
@@ -38,9 +135,8 @@ router.delete("/", (req, res) => {
     else
       ids = parseInt(ids);
     transmission.remove(ids, remove, (err, results) => {
-      if(err) res.send(err);
-      else res.send({status: "success", message: `${ids.toString()} deleted`});
+      if (err) res.send(err);
+      else res.send({ status: "success", message: `${ids.toString()} deleted` });
     })
   }
 })
-

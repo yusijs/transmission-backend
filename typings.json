@@ -10,7 +10,7 @@
     "mime": "registry:dt/mime#0.0.0+20160316155526",
     "multer": "registry:dt/multer#0.0.0+20160829120954",
     "node": "registry:dt/node#6.0.0+20160921192128",
-    "node-transmission": "github:yusijs/node-transmission-typings/index.d.ts#b9027100477463166287984276c572ce0d0bef85",
+    "node-transmission": "github:yusijs/node-transmission-typings/index.d.ts#ab3abcbda21b9f0a545b52bcba416124cdc49cb4",
     "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
   }
 }
