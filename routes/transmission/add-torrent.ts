@@ -1,6 +1,6 @@
 import express = require("express");
 import multer = require("multer");
-import { transmission } from '../config';
+import { transmission } from '../../config';
 
 const upload = multer({ dest: 'torrents/' })
 export const router = express.Router({})

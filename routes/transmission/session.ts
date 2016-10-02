@@ -1,7 +1,7 @@
 import express = require("express");
 import Transmission = require("transmission")
 
-import { transmission } from '../config'
+import { transmission } from '../../config'
 
 export const router = express.Router({})
 
