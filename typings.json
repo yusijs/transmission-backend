@@ -6,11 +6,15 @@
     "express-jwt": "registry:dt/express-jwt#0.0.0+20160629014920",
     "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160923124352",
     "express-unless": "registry:dt/express-unless#0.0.0+20160317120654",
+    "form-data": "registry:dt/form-data#0.0.0+20160724024111",
     "jsonwebtoken": "registry:dt/jsonwebtoken#0.0.0+20160720062725",
     "mime": "registry:dt/mime#0.0.0+20160316155526",
+    "moviedb": "registry:dt/moviedb#0.0.0+20160317120654",
     "multer": "registry:dt/multer#0.0.0+20160829120954",
     "node": "registry:dt/node#6.0.0+20160921192128",
     "node-transmission": "github:yusijs/node-transmission-typings/index.d.ts#ab3abcbda21b9f0a545b52bcba416124cdc49cb4",
+    "request": "registry:dt/request#0.0.0+20160726020908",
+    "request-promise": "registry:dt/request-promise#3.0.0+20160906190103",
     "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
   }
 }
