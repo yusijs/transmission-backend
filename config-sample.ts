@@ -13,3 +13,14 @@ export const transmission = new Transmission({
   password: process.env.password // default: false
 })
 
+export const options = {
+  method: 'POST',
+  uri: 'https://torrent-api-url',
+  body: {
+    username: '',
+    "passkey": process.env.PASSKEY,
+    category: "1", // DEFAULT: movie. 2 for series. Categories for your api may differ
+    search: ""
+  },
+  json: true // Automatically stringifies the body to JSON 
+};
