@@ -7,8 +7,10 @@ export const router = express.Router({})
 
 router.get("/tv/:name", (req, res) => {
 
+  let season = req.query.season || '';
+  let episode = req.query.episode || '';
   options.body.category = "2" // TV Category
-  options.body.search = req.params.name
+  options.body.search = `${req.params.name} ${season} ${episode}`
 
   rq(options)
     .then(htmlString => {
