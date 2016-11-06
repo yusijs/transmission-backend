@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
 })
 
 router.get("/:id", (req, res) => {
-  moviedb.movieInfo({ id: req.params.id }, (err, movie) => {
+  moviedb.movieInfo({ id: req.params.id, append_to_response: 'keywords' }, (err, movie) => {
     if (err) res.status(500).send(err);
     else res.send(movie);
   })
