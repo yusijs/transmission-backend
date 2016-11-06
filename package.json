@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "express-jwt": "^5.0.0",
     "jsonwebtoken": "^7.1.9",
@@ -14,7 +15,20 @@
     "request-promise": "^4.1.1",
     "transmission": "^0.4.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/bluebird": "^3.0.35",
+    "@types/body-parser": "0.0.33",
+    "@types/cors": "0.0.33",
+    "@types/express-jwt": "0.0.33",
+    "@types/express-unless": "0.0.30",
+    "@types/form-data": "0.0.32",
+    "@types/jsonwebtoken": "^7.1.33",
+    "@types/mime": "0.0.29",
+    "@types/moviedb": "0.0.28",
+    "@types/multer": "0.0.32",
+    "@types/request": "0.0.31",
+    "@types/request-promise": "^3.0.32"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
