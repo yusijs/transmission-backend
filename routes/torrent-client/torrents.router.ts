@@ -12,9 +12,25 @@ router.get("/tv/:name", (req, res) => {
 
   rq(options)
     .then(htmlString => {
+      // res.send(options);
       res.send(htmlString)
     })
     .catch(err => {
-      res.send(err);
+      res.status(500).send(err);
+    })
+})
+
+router.get("/movie/:name", (req, res) => {
+
+  options.body.category = "1" // Movie Category
+  options.body.search = req.params.name.replace(/[^\w\s!?]/g,'');
+
+  rq(options)
+    .then(htmlString => {
+      // res.send(options);
+      res.send(htmlString)
+    })
+    .catch(err => {
+      res.status(500).send(err);
     })
 })
