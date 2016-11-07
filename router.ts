@@ -5,6 +5,7 @@ import { router as SESSION_ROUTER } from './routes/transmission/session'
 
 import { router as MOVIE_ROUTER } from './routes/moviedb/movies/movies.router'
 import { router as SERIES_ROUTER } from './routes/moviedb/series/series.router'
+import { router as COLLECTIONS_ROUTER } from './routes/moviedb/collections';
 
 import { router as TORRENT_API } from './routes/torrent-client/torrents.router'
 
@@ -15,5 +16,6 @@ router.use("/session", SESSION_ROUTER)
 
 router.use("/movies", MOVIE_ROUTER);
 router.use("/series", SERIES_ROUTER);
+router.use("/collections", COLLECTIONS_ROUTER);
 
 router.use("/torrent-api", TORRENT_API);
