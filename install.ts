@@ -1,7 +1,7 @@
 import sqlite3 = require('sqlite3');
 import fs = require('fs');
 
-const dbFile = 'manager.db';
+const dbFile = 'db/manager.db';
 const dbFileExits = fs.existsSync(dbFile);
 
 const db = new sqlite3.Database(dbFile);
