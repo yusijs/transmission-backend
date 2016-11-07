@@ -29,7 +29,9 @@
     "@types/multer": "0.0.32",
     "@types/request": "0.0.31",
     "@types/request-promise": "^3.0.32",
-    "@types/sqlite3": "^2.2.31"
+    "@types/sqlite3": "^2.2.31",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.7"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
