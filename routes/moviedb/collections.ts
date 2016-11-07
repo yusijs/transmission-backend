@@ -5,7 +5,7 @@ import { DBResponse } from '../../utils';
 
 export const router = express.Router({})
 
-router.post("/collection", (req, res) => {
+router.post("/my", (req, res) => {
   const collection: Collection = req.body;
 
   if (!collection) {
@@ -28,6 +28,45 @@ router.post("/collection", (req, res) => {
 
       res.send(response.response);
     })
+  })
+
+})
+
+router.delete("/my", (req, res) => {
+  let {id} = req.body;
+
+  if (!id) {
+    res.status(500).send("Invalid ID")
+    return;
+  }
+
+  db.serialize(() => {
+    db.run(`DELETE FROM Collections where id = ?`, [id], (err) => {
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
+
+      res.status(200).send({
+        status: 1,
+        message: `Successfully deleted ${id}`
+      })
+    })
+  })
+
+})
+
+router.get("/:id", (req, res) => {
+  let {id} = req.params;
+
+  moviedb.collectionInfo({ id }, (err, collection) => {
+    if (err) {
+      res.status(500).send(err);
+      return;
+    }
+
+    res.status(200).send(collection);
+
   })
 
 })
