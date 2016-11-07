@@ -1,1 +1,1 @@
-export { DBResponse } from './moviedb-helpers';
+export { DBResponse, genres } from './moviedb-helpers';
