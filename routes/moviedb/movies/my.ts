@@ -59,6 +59,32 @@ router.delete("/", (req, res) => {
       })
     })
   })
+
+})
+
+router.put("/", (req, res) => {
+  let {id} = req.body;
+  let {seen} = req.body;
+
+  if (!id) {
+    res.status(500).send("Invalid ID");
+    return;
+  }
+
+  db.serialize(() => {
+    db.run(`update Movies set seen = ? where id = ?`, [seen, id], (err) => {
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
+
+      res.status(200).send({
+        status: 1,
+        message: `Updated ${id}, set seen to ${seen}`
+      })
+    })
+  })
+  
 })
 
 interface BelongsToCollection {
