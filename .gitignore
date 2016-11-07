@@ -3,3 +3,4 @@ typings
 config.ts
 **/*.js
 torrents/**/*
+manager.db*
