@@ -13,6 +13,7 @@
     "multer": "^1.2.0",
     "request": "^2.75.0",
     "request-promise": "^4.1.1",
+    "socket.io": "^1.5.1",
     "sqlite3": "^3.1.8",
     "transmission": "^0.4.5"
   },
@@ -29,6 +30,7 @@
     "@types/multer": "0.0.32",
     "@types/request": "0.0.31",
     "@types/request-promise": "^3.0.32",
+    "@types/socket.io": "^1.4.27",
     "@types/sqlite3": "^2.2.31",
     "tslint": "^3.15.1",
     "typescript": "^2.0.7"
