@@ -1,5 +1,6 @@
 import express = require("express");
 import Transmission = require("transmission");
+import socket = require("socket.io");
 
 import { transmission } from '../../config';
 import { router as ADD_TORRENT } from './add-torrent';
@@ -153,8 +154,32 @@ router.delete("/", (req, res) => {
         res.send(err);
         return;
       }
-      
+
       res.send({ status: "success", message: `${ids.toString()} deleted` });
     });
   }
 });
+
+export const torrentSocket = (io: SocketIO.Server) => {
+  io.on('connection', (socket: SocketIO.Client) => {
+    console.log("Connected");
+  });
+
+
+  let checkNow = true;
+  setInterval(() => {
+    if (checkNow) {
+      checkNow = false;
+      transmission.get((err, results) => {
+        let message = results;
+        if (err) {
+          message = err;
+        }
+        io.emit('torrents',
+          message
+        );
+        checkNow = true;
+      });
+    }
+  }, 2000);
+};

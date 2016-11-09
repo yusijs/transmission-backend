@@ -1,23 +1,24 @@
-import express = require("express")
-import bodyParser = require("body-parser")
+import express = require("express");
+import bodyParser = require("body-parser");
 import cors = require('cors');
-
-import { transmission } from './config'
-
-import { router as APP_ROUTER } from './router'
+import socketio = require('socket.io');
+const http = require('http')
+import { torrentSocket as TORRENTS_SOCKET } from './routes/transmission/torrents';
 
 const app = express();
+import { router as APP_ROUTER } from './router';
+app.use(cors());
+app.use(bodyParser.json({}));
 
-app.use(cors())
-app.use(bodyParser.json({}))
+app.use("/api", APP_ROUTER);
 
-app.use("/api", APP_ROUTER)
+const server = http.Server(app);
 
-app.get("/", (req,res) => {
-  transmission.get(function(err,results) {
-    if(err) res.send(err);
-    res.send(results);
-  })
-})
+server.listen(3000);
 
-app.listen(3000);
+const io = socketio.listen(server);
+TORRENTS_SOCKET(io);
+
+
+
+// app.listen(3000);
