@@ -4,7 +4,6 @@ import { moviedb } from '../../../config';
 export const router = express.Router({});
 
 router.get("/", (req, res) => {
-  // let discover = new Discover(req.query);
   moviedb.discoverMovie(req.query, (err, result) => {
     if (err) {
       res.status(500).send(err);
@@ -19,7 +18,7 @@ router.get("/", (req, res) => {
       return;
     }
 
-    res.status(200).send(result.results);
+    res.status(200).send(result);
   });
 });
 
