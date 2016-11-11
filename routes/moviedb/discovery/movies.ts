@@ -1,5 +1,6 @@
 import express = require("express");
-import { moviedb } from '../../../config';
+import { moviedb, API_KEY } from '../../../config';
+import rq = require("request-promise");
 
 export const router = express.Router({});
 
@@ -32,6 +33,18 @@ router.get("/genres", (req, res) => {
   });
 });
 
+router.get("/certifications", (req, res) => {
+  rq('https://api.themoviedb.org/3/certification/movie/list', {
+    qs: {
+      api_key: API_KEY
+    },
+    json: true
+  }).then(certifications => {
+    res.send(certifications.certifications.US);
+  }).catch(err => {
+    res.status(500).send(err);
+  })
+});
 
 interface Query {
   sort_by?: string;
