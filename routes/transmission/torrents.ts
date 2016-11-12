@@ -181,5 +181,5 @@ export const torrentSocket = (io: SocketIO.Server) => {
         checkNow = true;
       });
     }
-  }, 2000);
+  }, 300000);
 };

@@ -4,6 +4,7 @@ import cors = require('cors');
 import socketio = require('socket.io');
 const http = require('http')
 import { torrentSocket as TORRENTS_SOCKET } from './routes/transmission/torrents';
+import { torrentSocket as NEW_TORRENTS } from './routes/torrent-client/torrents.router';
 
 const app = express();
 import { router as APP_ROUTER } from './router';
@@ -18,6 +19,7 @@ server.listen(3000);
 
 const io = socketio.listen(server);
 TORRENTS_SOCKET(io);
+NEW_TORRENTS(io);
 
 
 
