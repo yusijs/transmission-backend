@@ -1,5 +1,5 @@
 <li class="list-group-item">
-  <span class="badge primary">
+  <span class="badge primary" (click)="torrentStatus(torrent.status, torrent.id)">
     <i class="fa" 
       [class.fa-pause-circle-o]="torrent.status === 4 || torrent.status === 6" 
       [class.fa-play-circle-o]="torrent.status === 0">

@@ -27,6 +27,11 @@ export class TorrentsService {
     return observable;
   }
 
+  changeStatus(status): Observable<any> {
+    return this._http.put(`${API_URL}/torrents/${status.status}`, status)
+      .map(res => res.json());
+  }
+
   constructor(private _http: Http) { }
 
 }

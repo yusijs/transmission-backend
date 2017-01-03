@@ -1,7 +1,7 @@
 <h1>Torrents <small>{{ torrents.length }} <small>(<i class="fa fa-arrow-up"></i> {{ uploading }} | <i class="fa fa-arrow-down"></i> {{ downloading }})</small> </small></h1> 
 <app-loading *ngIf="!torrents"></app-loading>
 <ul class="list-group">
-  <app-torrent *ngFor="let torrent of torrents" [torrent]="torrent"></app-torrent>
+  <app-torrent *ngFor="let torrent of torrents" (changeState)="stateChanged($event)" [torrent]="torrent"></app-torrent>
 </ul>
 
 <!--

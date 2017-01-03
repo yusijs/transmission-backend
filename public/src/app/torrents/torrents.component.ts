@@ -10,9 +10,17 @@ import { Torrent } from './torrent';
 })
 export class TorrentsComponent implements OnInit {
 
-  private torrents: Torrent[] = [];
-  private uploading: number = 0;
-  private downloading: number = 0;
+  public torrents: Torrent[] = [];
+  public uploading: number = 0;
+  public downloading: number = 0;
+
+  public stateChanged(event) {
+    this._torrentsService.changeStatus(event)
+      .subscribe(status => {
+        console.log(status);
+      });
+    console.log(event);
+  }
 
   constructor(private _torrentsService: TorrentsService) {
     this._torrentsService.socketList().subscribe(torrents => {

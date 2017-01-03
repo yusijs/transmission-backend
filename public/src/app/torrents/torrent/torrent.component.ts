@@ -24,6 +24,28 @@ export class TorrentComponent implements OnInit {
     return type;
   }
 
+  torrentStatus(status: number, id: number) {
+    let newStatus;
+    switch (status) {
+      case 0:
+        newStatus = 'start';
+        break;
+      case 4:
+        newStatus = 'stop';
+        break;
+      case 6:
+        newStatus = 'stop';
+        break;
+      default:
+        newStatus = 'start';
+        break;
+    }
+    this.changeState.emit({
+      status: newStatus,
+      id
+    });
+  }
+
   constructor() { }
 
   ngOnInit() {
