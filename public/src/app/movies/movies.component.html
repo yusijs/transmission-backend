@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <h1>Discover Movies</h1>
+
+  <div class="row">
+    <div [class.col-md-8]="movies" [hidden]="!movies">
+      <ul class="media-list">
+        <li class="media" *ngFor="let movie of movies">
+          <div class="media-left">
+            <a [routerLink]="['/movies', movie.id, movie.title | prettyUrl]">
+              <img class="media-object" [src]="'http://image.tmdb.org/t/p/w92' + movie.poster_path" [alt]="movie.title">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{ movie.title }}</h4>
+            <p class="lead">{{ movie.overview }}</p>
+          </div>
+        </li>
+      </ul>
+      <pagination [itemsPerPage]="20" [(ngModel)]="page" [totalItems]="total_results" [maxSize]="20" class="pagination-sm" [boundaryLinks]="true"
+        (pageChanged)="changePage($event)"></pagination>
+    </div>
+    <div [class.col-md-4]="movies" [class.col-md-12]="!movies">
+      <form [formGroup]="form" (submit)="submitForm()">
+        <legend>Criteria</legend>
+
+        <div class="form-group" *ngFor="let field of availableFields">
+          <template [ngIf]="formFields[field] && (formFields[field].type == 'text' || formFields[field].type == 'number' || formFields[field].type == 'date')">
+            <label> {{ formFields[field].title }} </label>
+            <input [type]="formFields[field].type" class="form-control" [formControlName]="field" [id]="field" [placeholder]="formFields[field].placeholder">
+          </template>
+
+          <template [ngIf]="formFields[field] && (formFields[field].type == 'boolean')">
+            <label>
+              <input [formControlName]="field" type="checkbox"> {{ formFields[field].title }}
+            </label>
+          </template>
+
+          <template [ngIf]="formFields[field] && (formFields[field].type == 'multi-select')">
+            <label>{{ formFields[field].title }}</label>
+            <select [multiple]="true" class="form-control" [formControlName]="field">
+              <option *ngFor="let item of selects[field]" [value]="item.id">{{ item.name }}</option>
+            </select>
+          </template>
+
+          <template [ngIf]="formFields[field]?.type == 'select'">
+            <label>{{ formFields[field].title }}</label>
+            <select [multiple]="false" class="form-control" (change)="logEvent($event)" [name]="field" [formControlName]="field" (change)="logEvent($event)">
+              <option value=""></option>
+              <option *ngFor="let item of selects[field]" [value]="item">{{ item }}</option>
+            </select>
+            <span class="help-block">{{ formFields[field].meaning }}</span>
+          </template>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+</div>

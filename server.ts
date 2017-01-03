@@ -11,7 +11,13 @@ import { router as APP_ROUTER } from './router';
 app.use(cors());
 app.use(bodyParser.json({}));
 
+app.use(express.static('public/dist'));
+
 app.use("/api", APP_ROUTER);
+
+app.all('*', (req, res) => {
+  res.status(200).sendFile(__dirname + "/public/dist/index.html");
+});
 
 const server = http.Server(app);
 

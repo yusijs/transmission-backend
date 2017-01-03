@@ -1,0 +1,27 @@
+	<!--<a href="#" (click)="$event.preventDefault()" *ngFor="let torrent of torrents.data.torrents" >-->
+		<strong> {{ torrent.name }} </strong>
+		<dl>
+			<dt>Categories</dt>
+			<dd>{{ torrent.sub1_name }} / {{ torrent.sub2_name }} / {{ torrent.sub3_name }}</dd>
+      
+			<dt>Scene?</dt>
+			<!--<dd>{{torrent.scenerelease}}</dd>-->
+      <dd>
+        <i class="fa" [class.fa-check]="torrent.scenerelease == 'yes'"></i>
+        <i class="fa" [class.fa-times]="torrent.scenerelease == 'no'"></i>
+      </dd>
+      
+			<dt>Added</dt>
+			<dd>{{torrent.added | date}}</dd>
+      
+			<dt>Size</dt>
+			<dd>{{torrent.size | bytes}}</dd>
+      
+			<dt>Freeleech?</dt>
+			<dd>{{(1 - torrent.freeleech) * 100}}%</dd>
+
+      <dt>Seeders / Leechers</dt>
+      <dd>{{torrent.seeders}} / {{torrent.leechers}}</dd>
+
+		</dl>
+	<!--</a>-->

@@ -1,0 +1,3 @@
+<div class="list-group">
+  <app-torrent (click)="getTorrent(torrent)" class="list-group-item" *ngFor="let torrent of torrents.data.torrents" [torrent]="torrent"></app-torrent>
+</div>

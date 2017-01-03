@@ -1,0 +1,28 @@
+<li class="list-group-item">
+  <span class="badge primary">
+    <i class="fa" 
+      [class.fa-pause-circle-o]="torrent.status === 4 || torrent.status === 6" 
+      [class.fa-play-circle-o]="torrent.status === 0">
+    </i>
+  </span>
+  <span class="badge" [class.success]="torrent.percentDone === 1 && torrent.status !== 0" [class.primary]="torrent.percentDone < 1 && torrent.status !== 0"
+    [class.danger]="torrent.status === 0">
+    <i class="fa" 
+      [class.fa-check]="torrent.percentDone === 1"
+      [class.fa-spinner.fa-spin]="torrent.percentDone < 1"
+      [class.fa-times]="torrent.status === 0">
+    </i>
+  </span>
+  <h4 class="list-group-heading">{{ torrent.name }}</h4>
+  <p class="list-group-item-text">
+    <small>Seeding to {{torrent.peersGettingFromUs}} / {{torrent.peersConnected}} - <i class="fa fa-upload"></i> {{ torrent.rateUpload | datarate }} </small>
+    <span *ngIf="torrent.doneDate === 0">|</span>
+    <small *ngIf="torrent.doneDate === 0">
+      Downloading from {{ torrent.peersSendingToUs }} / {{ torrent.peersConnected }} - <i class="fa fa-download"></i> {{ torrent.rateDownload | datarate }}
+    </small>
+    <progressbar [max]="100" [type]="progressType(torrent.percentDone)" [animate]="true" [value]="torrent.percentDone * 100">
+      <span style="color:white; white-space:nowrap;">{{torrent.downloadedEver | bytes}} / {{torrent.sizeWhenDone | bytes}}</span>
+    </progressbar>
+    <small>{{ torrent.sizeWhenDone | bytes }}, uploaded {{ torrent.uploadedEver | bytes }} (Ratio {{ torrent.uploadRatio }})</small>
+  </p>
+</li>

@@ -1,0 +1,20 @@
+<!--<h1>{{title}}</h1>-->
+<app-loading *ngIf="!movie"></app-loading>
+<div class="container" id="overview" *ngIf="movie">
+	<div class="col-md-4 col-sm-12">
+		<img [src]="'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + movie.poster_path" alt="Show Backdrop">
+	</div>
+	<div class="col-md-8 col-sm-12">
+		<h1>{{title}} <small>({{movie.release_date | date: 'y'}})</small> 
+			<span class="badge badge-primary"><i class="fa fa-star"></i> {{movie.vote_average}}</span>
+		</h1>
+		<p class="lead">{{movie.overview}}</p>
+	</div>
+</div>
+<div class="container-fluid" *ngIf="movie">
+	<div class="row">
+		<app-details class="col-xs-12 col-md-4" [details]="movie"></app-details>
+		<app-similar class="col-xs-12 col-md-4" [movies]="movie.similar_movies.results"></app-similar>
+		<app-torrents class="col-xs-12 col-md-4" *ngIf="torrentResults" [torrents]="torrentResults"></app-torrents>
+	</div>
+</div>

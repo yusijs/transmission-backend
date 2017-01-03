@@ -1,0 +1,4 @@
+<h3>{{movie.title}} <small> {{movie.vote_average}} <i class="fa fa-star"></i></small></h3>
+<hr>
+<p class="lead">{{movie.overview}}</p>
+<a [routerLink]="['/movies', movie.id, movie.title]">Details <i class="fa fa-external-link"></i></a>

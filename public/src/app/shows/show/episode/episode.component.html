@@ -1,0 +1,16 @@
+<h3>Episodes</h3>
+
+<div class="row btn-group">
+  <button (click)="changeEpisode(episode.episode_number)" *ngFor="let episode of episodes" type="button" class="btn btn-default">{{episode.episode_number}}</button>
+</div>
+
+<div class="row" *ngIf="episodes[currentEpisode - 1]">
+  <h4>{{ episodes[currentEpisode - 1].name }} ({{ episodes[currentEpisode - 1].episode_number }}) <small>{{ episodes[currentEpisode - 1].air_date }}</small></h4>
+  <div class="row">
+    <img [src]="'https://image.tmdb.org/t/p/w1000/' + episodes[currentEpisode - 1].still_path">
+    <p class="lead">{{ episodes[currentEpisode - 1].overview }}</p>
+  </div>
+  <!--<pre>
+    {{ episodes[currentEpisode - 1] | json }}
+  </pre>-->
+</div>

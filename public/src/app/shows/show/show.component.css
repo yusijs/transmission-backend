@@ -1,0 +1,12 @@
+app-season {
+  margin-top: 100px;
+}
+
+.pagetree {
+  position: fixed;
+  top: 100px;
+}
+
+.row {
+  margin-left: 15px !important;
+}

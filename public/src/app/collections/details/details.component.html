@@ -1,0 +1,10 @@
+<div class="container">
+	<app-heading class="row" id="overview" *ngIf="collection" [title]="title" [collection]="collection"></app-heading>
+	<div class="row" *ngIf="collection">
+		<app-movie class="col-md-2" *ngFor="let movie of collection.parts" (movieEvent)="movieDetails($event)" [movie]="movie"></app-movie>
+	</div>
+	<div class="row">
+		<app-movie-details class="col-md-6" *ngIf="movie" [movie]="movie"></app-movie-details>
+		<app-torrents *ngIf="torrents" [class.col-md-6]="movie" [class.col-md-12]="!movie" [torrents]="torrents"></app-torrents>
+	</div>
+</div>

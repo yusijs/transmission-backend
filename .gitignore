@@ -4,3 +4,5 @@ config.ts
 **/*.js
 torrents/**/*
 db
+# No time for tests yo
+**/*.spec.ts

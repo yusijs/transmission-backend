@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default" role="navigation">
+
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+		<a class="navbar-brand" [routerLink]="['/']">TV &amp; Movie Tracker</a>
+	</div>
+
+
+	<div class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li [routerLinkActive]="'active'"><a [routerLink]="['/home']">Home</a></li>
+			<li [routerLinkActive]="'active'"><a [routerLink]="['/movies']">Movies</a></li>
+			<li [routerLinkActive]="'active'"><a [routerLink]="['/tv']">TV Shows</a></li>
+			<li [routerLinkActive]="'active'"><a [routerLink]="['/torrents']">Torrents</a></li>
+		</ul>
+		<form class="navbar-form navbar-left" role="search">
+			<div class="form-group">
+				<input [(ngModel)]="asyncSelected" [ngModelOptions]="{standalone: true}" [typeahead]="dataSource" [typeaheadOptionField]="'title'"
+					[typeaheadGroupField]="'type'" (typeaheadOnSelect)="typeaheadOnSelect($event)" [typeaheadMinLength]="4" [typeaheadOptionsLimit]="20" [typeaheadWaitMs]="300"
+					placeholder="Search for movies" class="form-control">
+			</div>
+		</form>
+		<ul class="nav navbar-nav navbar-right">
+			<li [routerLinkActive]="'active'"><a [routerLink]="['/about']">About</a></li>
+			<li class="dropdown" dropdown >
+				<a (click)="$event.preventDefault()" href="#" class="dropdown-toggle" dropdownToggle data-toggle="dropdown">Profile <b class="caret"></b></a>
+				<ul class="dropdown-menu" dropdownMenu aria-labelledby="simple-dropdown">
+					<li><a href="#">Action</a></li>
+					<li><a href="#">Another action</a></li>
+					<li><a href="#">Something else here</a></li>
+					<li><a href="#">Separated link</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+</nav>

@@ -1,0 +1,40 @@
+<h3>Movie Data</h3>
+
+<div class="col-md-6 col-sm-12">
+	<h4>Facts</h4>
+
+	<dl>
+		<dt>Status: </dt>
+		<dd> {{ details.status }} </dd>
+
+		<dt>Language: </dt>
+		<dd> {{ details.spoken_languages[0].name }} </dd>
+
+		<dt>Runtime: </dt>
+		<dd> {{ details.runtime || '-' }} </dd>
+
+		<dt>Budget: </dt>
+		<dd> {{ details.budget | currency:'USD' }} </dd>
+
+		<dt>Revenue: </dt>
+		<dd> {{ details.revenue | currency:'USD' }} </dd>
+
+		<dt>Homepage: <a [href]="details.homepage"><i class="fa fa-external-link"></i></a> </dt>
+		<dd> </dd>
+
+		<dt>Release Date: </dt>
+		<dd> {{ details.release_date | date }} </dd>
+
+		<template [ngIf]="details.belongs_to_collection != null">
+			<dt>Part of Collection: </dt>
+			<dd> <a [routerLink]="['/collections', details.belongs_to_collection.id, details.belongs_to_collection.name]">{{ details.belongs_to_collection.name }}</a> </dd>
+		</template>
+
+	</dl>
+</div>
+
+<div class="col-md-6 col-sm-12">
+	<app-genres class="col-xs-12" [genres]="details.genres"></app-genres>
+
+	<app-keywords class="col-xs-12" [keywords]="details.keywords.keywords"></app-keywords>
+</div>

@@ -1,0 +1,55 @@
+<app-loading *ngIf="!show"></app-loading>
+<div class="container" *ngIf="show">
+	<div class="row" id="overview">
+		<div class="col-md-4 col-sm-12">
+			<img [src]="'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + show.poster_path" alt="Show Backdrop">
+		</div>
+		<div class="col-md-8 col-sm-12">
+			<h1>{{show.name}} <small>({{show.first_air_date | date: 'y'}})</small> 
+			<span class="badge badge-primary"><i class="fa fa-star"></i> {{show.vote_average}}</span>
+		</h1>
+			<p class="lead">{{show.overview}}</p>
+		</div>
+	</div>
+	<div class="row" id="cast">
+		<h3>Top Billed Cast</h3>
+		<div class="users col-md-2 text-center" *ngFor="let person of show.credits.cast">
+			<img [src]="'https://image.tmdb.org/t/p/w132_and_h132_bestv2' + person.profile_path" class="img-circle"><br> {{ person.name
+			}}
+			<br>
+			<small>{{ person.character }}</small>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+</div>
+<div class="row">
+	<div class="col-md-8 col-xs-12">
+		<div class="row" style="margin-top: 50px" *ngIf="season" id="seasons">
+			<div class="pull-left">
+				<p class="lead">Season {{season.season_number}}</p>
+			</div>
+			<div class="btn-group pull-right">
+				<button *ngFor="let season of show.seasons" (click)="changeSeason(season.season_number)" type="button" class="btn btn-info">{{ season.season_number }}</button>
+			</div>
+		</div>
+		<app-season *ngIf="season" [season]="season"></app-season>
+		<app-episode id="episodes" *ngIf="season" [episodes]="season.episodes"></app-episode>
+	</div>
+	<app-torrents (emitTorrent)="getTorrent($event)" [torrents]="torrents" *ngIf="torrents" class="col-md-4 col-xs-12"></app-torrents>
+	<!--<pre>
+		{{show | json}}
+	</pre>-->
+</div>
+
+<!--
+	TODO: Replace this with a fixed footer of some sort.
+	<div class="pagetree">
+	<h4>Page Sections</h4>
+	<ul>
+		<li><a [routerLink]="[]" fragment="overview">Overview</a></li>
+		<li><a [routerLink]="[]" fragment="cast">Cast</a></li>
+		<li><a [routerLink]="[]" fragment="seasons">Seasons</a></li>
+		<li><a [routerLink]="[]" fragment="episodes">Episodes</a></li>
+	</ul>
+</div>-->
