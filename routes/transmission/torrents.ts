@@ -161,12 +161,24 @@ router.delete("/", (req, res) => {
 });
 
 export const torrentSocket = (io: SocketIO.Server) => {
+  let checkNow = true;
   io.on('connection', (socket: SocketIO.Client) => {
-    console.log("Connected");
+    if (checkNow) {
+      checkNow = false;
+      transmission.get((err, results) => {
+        let message = results;
+        if (err) {
+          message = err;
+        }
+        io.emit('torrents',
+          message
+        );
+        checkNow = true;
+      });
+    }
   });
 
 
-  let checkNow = true;
   setInterval(() => {
     if (checkNow) {
       checkNow = false;
@@ -181,5 +193,5 @@ export const torrentSocket = (io: SocketIO.Server) => {
         checkNow = true;
       });
     }
-  }, 300000);
+  }, 2000);
 };
