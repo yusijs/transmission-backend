@@ -39,7 +39,7 @@
   },
   "scripts": {
     "build": "tsc && cd public && ng build --prod",
-    "start": "concurrently \"tsc -w\" \"node server.js\" \"cd public && ng build -o dist -w\" "
+    "start": "concurrently \"tsc -w\" \"cd public && ng build -o dist -w\" "
   },
   "keywords": [
     "transmission",
