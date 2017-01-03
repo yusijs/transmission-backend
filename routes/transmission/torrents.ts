@@ -30,11 +30,11 @@ router.get("/", (req, res) => {
 });
 
 router.put("/", (req, res) => {
-  if (!req.body.ids) {
+  if (!req.body.ids && !req.body.id) {
     res.status(500).send({ status: "failed", message: "No ids specified" });
   }
   else {
-    let {ids} = req.body;
+    let ids = req.body.ids || req.body.id;
     let options: Transmission.setTorrentOptions = req.body.options;
     // Needs to be a number, so parse the id(s) just to be safe.
     if (typeof ids === 'object') {
@@ -49,11 +49,11 @@ router.put("/", (req, res) => {
 });
 
 router.put("/reannounce", (req, res) => {
-  if (!req.body.ids) {
+  if (!req.body.ids && !req.body.id) {
     res.status(500).send({ status: "failed", message: "No ids specified" });
   }
   else {
-    let {ids} = req.body;
+    let ids = req.body.ids || req.body.id;
     // Needs to be a number, so parse the id(s) just to be safe.
     if (typeof ids === 'object') {
       ids = ids.map(item => parseInt(item));
@@ -68,11 +68,11 @@ router.put("/reannounce", (req, res) => {
 });
 
 router.put("/start", (req, res) => {
-  if (!req.body.ids) {
+  if (!req.body.ids && !req.body.id) {
     res.status(500).send({ status: "failed", message: "No ids specified" });
   }
   else {
-    let {ids} = req.body;
+    let ids = req.body.ids || req.body.id;
     // Needs to be a number, so parse the id(s) just to be safe.
     if (typeof ids === 'object') {
       ids = ids.map(item => parseInt(item));
@@ -87,11 +87,11 @@ router.put("/start", (req, res) => {
 });
 
 router.put("/startnow", (req, res) => {
-  if (!req.body.ids) {
+  if (!req.body.ids && !req.body.id) {
     res.status(500).send({ status: "failed", message: "No ids specified" });
   }
   else {
-    let {ids} = req.body;
+    let ids = req.body.ids || req.body.id;
     // Needs to be a number, so parse the id(s) just to be safe.
     if (typeof ids === 'object') {
       ids = ids.map(item => parseInt(item));
@@ -106,11 +106,11 @@ router.put("/startnow", (req, res) => {
 });
 
 router.put("/stop", (req, res) => {
-  if (!req.body.ids) {
+  if (!req.body.ids && !req.body.id) {
     res.status(500).send({ status: "failed", message: "No ids specified" });
   }
   else {
-    let {ids} = req.body;
+    let ids = req.body.ids || req.body.id;
     // Needs to be a number, so parse the id(s) just to be safe.
     if (typeof ids === 'object') {
       ids = ids.map(item => parseInt(item));
@@ -136,7 +136,7 @@ router.get("/active", (req, res) => {
 });
 
 router.delete("/", (req, res) => {
-  if (!req.body.ids) {
+  if (!req.body.ids && !req.body.id) {
     res.status(500).send({ status: "error", message: "No ids supplied." });
     return false;
   }
