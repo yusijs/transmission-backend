@@ -52,7 +52,7 @@ export interface Torrent {
   seedRatioMode: string;
   sizeWhenDone: number;
   startDate: string;
-  status: string;
+  status: number;
   trackers: Trackers[];
   trackerStats: TrackerStats[];
   totalSize: number;
